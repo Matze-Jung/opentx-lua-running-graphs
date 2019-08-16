@@ -1,6 +1,6 @@
 # opentx-lua-running-graphs
 
-**Draws a moving line graph from a given source.**
+**Draws a moving line graph from a given source in OpenTX**
 
 Example screens on X7 display with single/multiple graphs ...
 
@@ -9,7 +9,7 @@ Example screens on X7 display with single/multiple graphs ...
 
 ... and inside a widget grid*.
 
-![alt text](../opentx-lua-widgets/img/wdgts2.lua.gif "TELEMETRY/wdgts2.lua")
+![alt text](https://github.com/Matze-Jung/opentx-lua-widgets/raw/master/img/wdgts2.lua.gif "TELEMETRY/wdgts2.lua")
 
 >  \**part of the [opentx-lua-widgets](https://github.com/Matze-Jung/opentx-lua-widgets) package*
 
