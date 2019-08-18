@@ -65,6 +65,10 @@ Setting up the script as a telemetry page will enable access at the press of a b
 
 To invoke the script, simply long-press the [PAGE] button from the model screen.
 
+### Memory warning
+If you just copied the files, launched the script and a `not enough memory` warning appears, probably restarting the radio is the only thing to do here. If OpenTX still complains, try to delete all `.luac` files and make shure that you've did build OpenTX with the luac-option checked.
+
+
 ## API
 #### Functions
 `createGraph(id, opts)`
@@ -79,7 +83,7 @@ Init and display the graph.
 | opts.**min** | number | Smallest possible value |
 | opts.**speed** | number *(optional, default `75`)* | Update speed in 100ths second intervals, smaller is faster |
 | opts.**style** | number *(optional, default `SOLID` - `DOTTED` at 'min' and 'max' values)* | `SOLID` for a full solid line, `DOTTED` for a dotted line |
-| opts.**crit** | number *(optional)* | If set, the line style is `DOTTED` below and `SOLID` above this value. The X-axis gets a mark at the values position |
+| opts.**crit** | number *(optional)* | If set, the line style is `DOTTED` below and `SOLID` above this value. The Y-axis gets a mark at the values position |
 
 ---
 `getGraphAverage(id)`
@@ -93,7 +97,7 @@ Returns average value of graph, specified by `id`.
 #### Trigger
 Set input condition for the pause toggle. Relates to all graphs global.
 
-`src/SCRIPTS/GRAPHS/trigger.lua`
+`SCRIPTS/GRAPHS/trigger.lua`
 
 ```lua
 return {
@@ -104,6 +108,21 @@ return {
     },
 }
 ```
+Switch [SA] value greater than 100 toggles pause event. To disable trigger, return false.
+
+## File structure
+`SCRIPTS/`
+- `GRAPHS/`
+ - `graphs.lua` main script
+ - `trigger.lua` user inputs
+- `MIXES/`
+ - `graphs.lua` model script
+- `TELEMETRY/` example telemetry screens
+ - `exmpl1.lua`
+ - `graph.lua`
+ - `graphs.lua`
+- `WIDGETS/`
+ - `graph.lua` widget for the [opentx-lua-widgets](https://github.com/Matze-Jung/opentx-lua-widgets) grid system
 
 ## Building from source
 - Be sure to have `LUA 5.2`and `Node.js` installed
