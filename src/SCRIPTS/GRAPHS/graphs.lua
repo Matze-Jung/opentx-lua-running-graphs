@@ -15,6 +15,7 @@ function createGraph(id, opts)
 		g.values = {}
 		g.lastRun = 0
 		g.sum = 0
+		g.range = {}
 		g.dp = math.ceil(g.w / MAXLEN)
 		g.h = g.h - 2 -- bottom offset
 		g.w = g.w - 1 -- right offset
@@ -65,12 +66,19 @@ function createGraph(id, opts)
 	end
 end
 
-function getGraphAverage(id)
-	if graphs[id] == nil or not graphs[id].values then
-		return 0
+function getGraphRange(id)
+	if graphs[id] and graphs[id].range then
+		return { min=graphs[id].range.min , max=graphs[id].range.max}
 	end
-	local g = graphs[id]
-	return g.sum ~= 0 and g.sum / #(g.values) or 0
+	return { min=0, max=0 }
+end
+
+function getGraphAverage(id)
+	if graphs[id] and graphs[id].values then
+		local g = graphs[id]
+		return g.sum ~= 0 and g.sum / #(g.values) or 0
+	end
+	return 0
 end
 
 local function init()
@@ -115,6 +123,13 @@ local function update()
 					v = assert(g.src)()
 				else
 					v = getValue(g.src)
+				end
+
+				if not g.range.min or g.range.min > v then
+					g.range.min = v
+				end
+				if not g.range.max or g.range.max < v then
+					g.range.max = v
 				end
 
 				g.sum = g.sum + v
