@@ -13,25 +13,28 @@ Example screens on X7 display with single/multiple graphs ...
 
 >  \**part of the [opentx-lua-widgets](https://github.com/Matze-Jung/opentx-lua-widgets) package*
 
-## Test environment
-* OpenTX v2.2.4 on Taranis Q X7, Betaflight 4.0.5 on OmnibusF4 w/ R-XSR
-* Companion Sim v2.2.4 (*FrSky platforms only*)
-
 ## Download
 Please go to the [releases page](https://github.com/Matze-Jung/opentx-lua-running-graphs/releases) to download the latest files.
 
+## Test environment
+* [OpenTX v2.2.4](https://github.com/opentx/opentx) on Taranis Q X7, [Betaflight 4.0.5](https://github.com/betaflight/betaflight) on OmnibusF4 w/ R-XSR
+* [Companion Sim v2.2.4](https://www.open-tx.org/) (*FrSky platforms only*)
+
 ## File structure
-`GRAPHS/`
-- `graphs.lua` main script
-- `trigger.lua` user inputs
+- `GRAPHS/`
+    * `graphs.lua` main script
+    * `trigger.lua` user inputs
 
-`MIXES/`
-- `graphs.lua` model script
 
-`TELEMETRY/` telemetry screen examples
+- `MIXES/`
+    * `graphs.lua` model script
 
-`WIDGETS/`
-- `graph.lua` widget for the [opentx-lua-widgets](https://github.com/Matze-Jung/opentx-lua-widgets) grid system
+
+- `TELEMETRY/` telemetry screen examples
+
+
+- `WIDGETS/`
+    * `graph.lua` widget for the [opentx-lua-widgets](https://github.com/Matze-Jung/opentx-lua-widgets) grid system
 
 ## API
 #### Functions
@@ -49,14 +52,29 @@ Init and display the graph.
 | opts.**style** | number *(optional, default `SOLID` - `DOTTED` at 'min' and 'max' values)* | `SOLID` for a full solid line, `DOTTED` for a dotted line |
 | opts.**crit** | number *(optional)* | If set, the line style is `DOTTED` below and `SOLID` above this value. The Y-axis gets a mark at the values position |
 
----
-`getGraphAverage(id)`
+##  
 
-Returns average value of graph, specified by `id`.
+`getGraphRange(id)`
+
+Get minimum and maximum stored values of a graph, specified by `id`.
 
 | Option | Type | Description |
 | - | - | - |
 | **id** | number | ID of the graph |
+
+Returns table `{ min:number, max:number }`
+
+##  
+
+`getGraphAverage(id)`
+
+Get average value of a graph, specified by `id`.
+
+| Option | Type | Description |
+| - | - | - |
+| **id** | number | ID of the graph |
+
+Returns number
 
 #### Trigger
 Set input condition for the pause toggle. Relates to all graphs global.
@@ -72,12 +90,12 @@ return {
     },
 }
 ```
-Switch [SA] value greater than 100 toggles pause event. To disable trigger, return `false`.
+Switch [SA] value greater than 100 toggles pause event. To disable trigger, return `false` (default).
 
 ## Installing
 Unzip the files from the release package and drag the contents to your radio. If you do this correctly, the `SCRIPTS` directory will merge with your existing directories, placing the scripts in their appropriate paths.
 
-The `src` directory is not required for use and is only available for maintenance of the code.  While it may work to use this directory, you may encounter memory issues on your transmitter.
+The `src` directory is not required for use and is only available for maintenance of the code. While it may work to use this directory, you may encounter some issues.
 
 How to copy to the Transmitter:
 
@@ -127,3 +145,8 @@ If you just copied the files, launched the script and a `not enough memory` warn
 - Run `npm install` from the root folder to install node modules
 - Run `npm start`, `make` or `./bin/build.sh min` from the root folder with appropriate privileges (omit the `min` switch to build without minifying)
 - Compiled/minified files will be created at the `obj` folder. Copy the files to your transmitter.
+
+## Resources
+* [Manual for OpenTX 2.2](https://opentx.gitbooks.io/manual-for-opentx-2-2)
+* [OpenTX 2.2 Lua Reference Guide](https://opentx.gitbooks.io/opentx-2-2-lua-reference-guide/)
+* [OpenTX Taranis Manual](https://opentx.gitbooks.io/opentx-taranis-manual)
