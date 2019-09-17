@@ -81,11 +81,11 @@ local function graphWidget(zone, event, opts)
     end
 
     if opts.lbl then
-        p.t = 9
-        lcd.drawFilledRectangle(z.x, z.y, z.w, 8)
-        lcd.drawText(z.x + 1, z.y + 1, opts.lbl, SMLSIZE+INVERS)
-        lcd.drawNumber(lcd.getLastPos() + 3, z.y + 1, val, SMLSIZE+INVERS)
-        lcd.drawText(lcd.getLastPos(), z.y + 1, opts.unit or "", SMLSIZE+INVERS)
+        lcd.drawFilledRectangle(z.x, p.t + z.y, z.w, 8)
+        lcd.drawText(z.x + 1, p.t + z.y + 1, opts.lbl, SMLSIZE+INVERS)
+        lcd.drawNumber(lcd.getLastPos() + 5, p.t + z.y + 1, val, SMLSIZE+INVERS)
+        lcd.drawText(lcd.getLastPos(), p.t + z.y + 1, opts.unit or "", SMLSIZE+INVERS)
+        p.t = p.t + 9
     end
 
     createGraph(opts.uid, {
