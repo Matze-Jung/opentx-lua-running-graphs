@@ -1,5 +1,3 @@
--- To layout telemetry screens try opentx-lua-widgets [https://github.com/Matze-Jung/opentx-lua-widgets]local function run(event)
-
 local function run(event)
     lcd.clear()
 
