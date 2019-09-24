@@ -1,9 +1,4 @@
-/bin/*
-!/bin/build.sh
-/node_modules
-/obj
-/releases
+node_modules
+obj
+releases
 .builderr
-*.lnk
-batchk.lua
-debug.lua

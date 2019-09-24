@@ -1,0 +1,25 @@
+os: linux
+sudo: false
+dist: trusty
+addons:
+  apt:
+    packages:
+    - lua5.2
+git:
+  depth: 5
+install:
+- npm install
+script:
+- npm start
+- npm run pack
+deploy:
+  provider: releases
+  api_key: "$TOKEN"
+  file_glob: true
+  file: releases/*
+  skip_cleanup: true
+  on:
+    tags: true
+env:
+  matrix:
+    secure: e2+vezC5zWMwxTiqzBKKXDx6iV1//doIoC0vFJeFtLPo2BgjD57ydEfQ0mB6jxQLMG+O+DImpHjNn8k9TMwnErMAilcctdiddCTN+Y/i+b9r3aKnFZ3Jgtqa7Kz7aWYKeIBA/1WTrtTigN780xWl51epyvp1l2jAFBMbK7XEU0fU2jnVi5xudAmN0G0RhnOM65p9laV28JTs8KLVkKjUtyYbvDC0Z1k9NT9p8By33m18Km+4U5qsVt0wYYMmzOi/czczRS07tW0mkhcn6DhFThbyPhiFZ+L9EREs3BtQUd40a5VWGdKhNsuUArNO57df1d+0/3qSyUaQ05i/eRP1jXzO8nbnD/M9CftNeSNWfP//SiW4GUSW8lgQmEjv/QUeuk2/i4u4dP6P3cRSkaEEzVl5oNkKATUEYuBUeFDKpK9tQ1UNnRIJjzC7mMXZZWAn1FtYqy5JhMtG3ITm8fdFhTIz+nRdY0QWr5nmHzbGre33eUE0nCXtBn1AzlKk3jsQYoWJGS8CAhHkRTnbziVU5ghxTuwaz5rkyRAFoa5nUNs75gTatHcVn+0dk+bUAZ9y+WHA51bbd58Xx8+7Prq92w2qW5F+CHmB1cJN6amd3gtjPBQ6Ci1ogFLf5qdc3BTN8dUBA7L9s4w6kxMRQGBYISklQbki5kViJzIh/+vDa3k=
