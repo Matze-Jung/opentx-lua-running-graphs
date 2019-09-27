@@ -1,15 +1,15 @@
-# opentx-lua-running-graphs
+# opentx-lua-running-graphs [![Build Status](https://travis-ci.org/Matze-Jung/opentx-lua-running-graphs.svg?branch=master)](https://travis-ci.org/Matze-Jung/opentx-lua-running-graphs)
 
 **Draws a moving line graph from a given source in OpenTX**
 
 Example screens on X7 display with single/multiple graphs ...
 
-![alt text](img/graph.lua.gif "TELEMETRY/graph.lua")
-![alt text](img/graphs.lua.gif "TELEMETRY/graphs.lua")
+[![](img/graph.lua.gif "TELEMETRY/graph.lua")](https://github.com/Matze-Jung/opentx-lua-running-graphs/blob/master/src/SCRIPTS/TELEMETRY/graph.lua)
+[![](img/graphs.lua.gif "TELEMETRY/graphs.lua")](https://github.com/Matze-Jung/opentx-lua-running-graphs/blob/master/src/SCRIPTS/TELEMETRY/graphs.lua)
 
 ... and inside a widget grid*.
 
-![alt text](https://github.com/Matze-Jung/opentx-lua-widgets/raw/master/img/wdgts2.lua.gif "TELEMETRY/wdgts2.lua")
+[![](https://github.com/Matze-Jung/opentx-lua-widgets/raw/master/img/wdgts2.lua.gif "TELEMETRY/wdgts2.lua")](https://github.com/Matze-Jung/opentx-lua-widgets/blob/master/src/SCRIPTS/TELEMETRY/wdgts2.lua)
 
 >  \**part of the [opentx-lua-widgets](https://github.com/Matze-Jung/opentx-lua-widgets) package*
 
@@ -119,7 +119,7 @@ If you copied the files correctly, you can now go to the `CUSTOM SCRIPTS` screen
 4. Select the script `graphs` and [ENT]
 5. Press [EXIT] to return.
 
-![alt text](img/CUSTOMSCRIPTS.gif "CUSTOM SCRIPTS")
+[![](img/CUSTOMSCRIPTS.gif "CUSTOM SCRIPTS")](#installing)
 
 Go to the telemetry screen setup page and select telemetry pages.
 
@@ -133,7 +133,7 @@ Setting up the script as a telemetry page will enable access at the press of a b
 6. Select one of the listed telemetry scripts and hit [ENT].
 7. Long-press [EXIT] to return to your model screen.
 
-![alt text](img/DISPLAY.gif "DISPLAY")
+[![](img/DISPLAY.gif "DISPLAY")](#setup)
 
 To invoke the script, simply long-press the [PAGE] button from the model screen.
 
