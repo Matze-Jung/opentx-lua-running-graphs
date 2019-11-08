@@ -55,13 +55,17 @@
           - Unit sign drawn behind the value
           - Set to "%", to output percent of 'src', calculated with 'min' and 'max'
 
-        p: table (optional, default [t=1, r=1, b=1, l=1])
-           - Padding between graph and widget boundaries in px
+        m: table (optional, default [t=0, r=0, b=0, l=0])
+           - Cell margin in px
+             (top, right, bottom, left)
+
+        p: table (optional, default [t=0, r=1, b=2, l=1])
+           - Cell padding in px
              (top, right, bottom, left)
 --]]
 
 local function graphWidget(zone, event, opts)
-    local p = { t=1, r=1, b=1, l=1 }
+    local p = { t=0,r=1,b=2,l=1 }
 
     if opts and opts.p then
         for i, x in pairs(opts.p) do
@@ -69,7 +73,7 @@ local function graphWidget(zone, event, opts)
         end
     end
 
-    local z = zone
+    local z = calcWidgetZone(zone, m, opts.m or false)
     local val = type(opts.src) == "function"
         and opts.src()
         or getValue(opts.src)
@@ -81,11 +85,12 @@ local function graphWidget(zone, event, opts)
     end
 
     if opts.lbl then
-        lcd.drawFilledRectangle(z.x, p.t + z.y, z.w, 8)
-        lcd.drawText(z.x + 1, p.t + z.y + 1, opts.lbl, SMLSIZE+INVERS)
-        lcd.drawNumber(lcd.getLastPos() + 5, p.t + z.y + 1, val, SMLSIZE+INVERS)
-        lcd.drawText(lcd.getLastPos(), p.t + z.y + 1, opts.unit or "", SMLSIZE+INVERS)
-        p.t = p.t + 9
+        lcd.drawFilledRectangle(z.x, z.y, z.w, 8)
+        lcd.drawText(z.x + 1, z.y + 1, opts.lbl, SMLSIZE+INVERS)
+        lcd.drawNumber(lcd.getLastPos() + 5, z.y + 1, val, SMLSIZE+INVERS)
+        lcd.drawText(lcd.getLastPos(), z.y + 1, opts.unit or "", SMLSIZE+INVERS)
+        z.y = z.y + 9
+        z.h = z.h - 8
     end
 
     createGraph(opts.uid, {
