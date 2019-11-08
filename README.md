@@ -4,7 +4,7 @@
 
 Example screens on X7 display with single/multiple graphs ...
 
-[![](img/graph.lua.gif "TELEMETRY/graph.lua")](https://github.com/Matze-Jung/opentx-lua-running-graphs/blob/master/src/SCRIPTS/TELEMETRY/graph.lua)
+[![](img/memgph.lua.gif "TELEMETRY/memgph.lua")](https://github.com/Matze-Jung/opentx-lua-running-graphs/blob/master/src/SCRIPTS/TELEMETRY/memgph.lua)
 [![](img/graphs.lua.gif "TELEMETRY/graphs.lua")](https://github.com/Matze-Jung/opentx-lua-running-graphs/blob/master/src/SCRIPTS/TELEMETRY/graphs.lua)
 
 ... and inside a widget grid*.
@@ -17,8 +17,8 @@ Example screens on X7 display with single/multiple graphs ...
 Please go to the [releases page](https://github.com/Matze-Jung/opentx-lua-running-graphs/releases) to download the latest files.
 
 ## Test environment
-* [OpenTX v2.2.4](https://github.com/opentx/opentx) on Taranis Q X7, [Betaflight 4.0.5](https://github.com/betaflight/betaflight) on OmnibusF4 w/ R-XSR
-* [Companion Sim v2.2.4](https://www.open-tx.org/) (*FrSky platforms only*)
+* [OpenTX v2.3.1](https://github.com/opentx/opentx) on Taranis Q X7
+* [OpenTX Companion v2.3.1](https://www.open-tx.org/) (*FrSky platforms only*)
 
 ## File structure
 - `GRAPHS/`
