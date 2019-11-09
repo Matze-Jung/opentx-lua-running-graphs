@@ -138,7 +138,7 @@ Setting up the script as a telemetry page will enable access at the press of a b
 To invoke the script, simply long-press the [PAGE] button from the model screen.
 
 ### Memory warning
-If you just copied the files, launched the script and a `not enough memory` warning appears, probably restarting the radio is the only thing to do here. If OpenTX still complains, try to delete all `.luac` files and make shure that you've did build OpenTX with the luac-option checked.
+If you just copied the files, launched the script and a `not enough memory` warning appears, probably restarting the radio is the only thing to do here (maybe several times). If OpenTX still complains try to delete all `.luac` files and restart.
 
 ## Building from source
 - Be sure to have `LUA 5.2`and `Node.js` installed
