@@ -21,20 +21,23 @@ Please go to the [releases page](https://github.com/Matze-Jung/opentx-lua-runnin
 * [OpenTX Companion v2.3.1](https://www.open-tx.org/) (*FrSky platforms only*)
 
 ## File structure
-- `GRAPHS/`
+- `SCRIPTS/GRAPHS/`
     * `graphs.lua` main script
     * `trigger.lua` user inputs
 
 
-- `MIXES/`
+- `SCRIPTS/MIXES/`
     * `graphs.lua` model script
 
 
-- `TELEMETRY/` telemetry screen examples
+- `SCRIPTS/TELEMETRY/` telemetry screen examples
 
 
-- `WIDGETS/`
+- `SCRIPTS/WIDGETS/`
     * `graph.lua` widget for the [opentx-lua-widgets](https://github.com/Matze-Jung/opentx-lua-widgets) grid system
+
+- `WIDGETS/Graph/` Horus integration example
+
 
 ## API
 #### Functions
@@ -49,7 +52,8 @@ Init and display the graph.
 | opts.**max** | number | Largest possible value |
 | opts.**min** | number | Smallest possible value |
 | opts.**speed** | number *(optional, default `75`)* | Update speed in 100ths second intervals, smaller is faster |
-| opts.**style** | number *(optional, default `SOLID` - `DOTTED` at 'min' and 'max' values)* | `SOLID` for a full solid line, `DOTTED` for a dotted line |
+| opts.**lnStyle** | number *(optional, default `SOLID` - `DOTTED` at 'min' and 'max' values)* | `SOLID` for a full solid line, `DOTTED` for a dotted line |
+| opts.**lnSize** | number *(optional, default 1)* | Line thickness in px |
 | opts.**crit** | number *(optional)* | If set, the line style is `DOTTED` below and `SOLID` above this value. The Y-axis gets a mark at the values position |
 
 ##  

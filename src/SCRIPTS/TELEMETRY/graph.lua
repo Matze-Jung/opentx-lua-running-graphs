@@ -18,8 +18,9 @@ local function run(event)
         speed=25,
         min=-1000,
         max=1000,
-        crit=350,
-        -- style=SOLID
+        -- crit=350,
+        -- lnStyle=SOLID,
+        lnSize=2,
     })
     lcd.drawText(2, 9, "max", SMLSIZE)
     lcd.drawText(3, 55, "min", SMLSIZE)

@@ -25,7 +25,7 @@
       - Configurations
 
         uid: int
-          - Systemwide unique ID of the graph
+          - Systemwide unique graph ID
 
         src: function or sensor-ID string/number
           - Data source
@@ -36,9 +36,12 @@
         speed: int (optional, default 75)
           - Running speed in 100ths second intervals, means smaller is faster
 
-        style: int (optional, default SOLID - but DOTTED at 'min' or 'max' values)
+        lnStyle: int (optional, default SOLID - but DOTTED at 'min' or 'max' values)
           - Set to SOLID for a full solid line
           - Set to DOTTED for a dotted line
+
+        lnSize: int (optional, default 1)
+          - Set the line thickness in px
 
         crit: number (optional)
           - If set, the line style is DOTTED below and SOLID above this value
@@ -102,8 +105,9 @@ local function graphWidget(zone, event, opts)
         speed=opts.speed or 75,
         min=opts.min,
         max=opts.max,
-        style=opts.style or nil,
-        crit=opts.crit or nil
+        lnStyle=opts.lnStyle,
+        lnSize=opts.lnSize,
+        crit=opts.crit
     })
     lcd.drawText(z.x + 1, p.t + z.y, opts.lblmax or "", SMLSIZE)
     lcd.drawText(z.x + 1, z.y + z.h - p.b - 7, opts.lblmin or "", SMLSIZE)

@@ -1,6 +1,6 @@
 local MAXLEN = 64
 
-local graphs = {}
+graphs = {}
 local trgrs = {}
 local paused = false
 
@@ -24,14 +24,14 @@ function createGraph(id, opts)
 	end
 
 	-- Y-line
-	lcd.drawLine(g.x + 1, g.y, g.x + 1, g.y + g.h + 1, SOLID, FORCE)
+	lcd.drawLine(g.x + 1, g.y, g.x + 1, g.y + g.h + 1, SOLID, FORCE or 0)
 	lcd.drawPoint(g.x, g.y)
 	if g.crit ~= nil then
 		lcd.drawPoint(g.x, math.floor(g.y + (g.max - g.crit) * ((g.h-1) / (g.max - g.min))))
 	end
 
 	-- X-line
-	lcd.drawLine(g.x, g.y + g.h, g.x + g.w, g.y + g.h, SOLID, FORCE)
+	lcd.drawLine(g.x, g.y + g.h, g.x + g.w, g.y + g.h, SOLID, FORCE or 0)
 
 	if paused then
 		lcd.drawText(g.x + (g.w / 2) - 20, g.y + (g.h / 2) - 4, "paused", SMLSIZE+BLINK+INVERS)
@@ -52,17 +52,18 @@ function createGraph(id, opts)
 
 		local range = g.max - g.min
 		local maxY = g.y
-		local minY = g.h + g.y - 1
-		local curY = math.floor(maxY + (g.max - value) * ((g.h-1) / range))
-		local nxtY = math.floor(maxY + (g.max - nxtVal) * ((g.h-1) / range))
+		local minY = g.h + g.y - (g.lnSize or 1)
+		local curY = math.floor(maxY + (g.max - value) * ((minY-maxY) / range))
+		local nxtY = math.floor(maxY + (g.max - nxtVal) * ((minY-maxY) / range))
 		local lineForm = g.style or (((nxtY >= minY and curY >= minY) or (nxtY <= maxY and curY <= maxY)) and DOTTED or SOLID)
-
 
 		if g.crit ~= nil then
 			lineForm = (value <= g.crit and nxtVal <= g.crit) and DOTTED or SOLID
 		end
 
-		lcd.drawLine(g.x + (j*g.dp) - g.dp + 2, curY, g.x + ((j+1)*g.dp) - g.dp + 2, nxtY, lineForm, FORCE)
+		for i=0, g.lnSize and g.lnSize-1 or 0 do
+			lcd.drawLine(g.x + (j*g.dp) - g.dp + 2, curY + i, g.x + ((j+1)*g.dp) - g.dp + 2, nxtY + i, lineForm, FORCE or 0)
+		end
 	end
 end
 
@@ -81,11 +82,18 @@ function getGraphAverage(id)
 	return 0
 end
 
-local function init()
+local function init(id)
 	trgrs = assert(loadScript("/SCRIPTS/GRAPHS/trigger.lua"))()
 	for j, t in pairs(trgrs) do
 		trgrs[j].state = t.func()
 	end
+
+	if id and graphs[id] then
+		graphs[id] = {}
+		return
+	end
+
+	graphs = {}
 end
 
 local function update()
@@ -106,7 +114,6 @@ local function update()
 			if g.lastRun == 0 or g.lastRun + g.speed < getTime() then
 				local maxValues = math.ceil(g.w / g.dp)
 				local vals = g.values
-
 				if #vals >= maxValues then
 					local tmp = {}
 					for j=1,#(vals) do

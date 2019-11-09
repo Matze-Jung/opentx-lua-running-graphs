@@ -18,7 +18,7 @@ local function run(event)
         speed=50,
         min=-1000,
         max=1000,
-        style=SOLID
+        lnStyle=SOLID
     })
     lcd.drawText(1, 8, "max", SMLSIZE)
     lcd.drawText(1, 24, "min", SMLSIZE)
@@ -40,7 +40,7 @@ local function run(event)
         speed=50,
         min=-1000,
         max=1000,
-        style=DOTTED
+        lnStyle=DOTTED
     })
     lcd.drawText(1, 40, "max", SMLSIZE)
     lcd.drawText(1, 56, "min", SMLSIZE)
